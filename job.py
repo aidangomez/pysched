@@ -16,7 +16,7 @@ import time
 import traceback
 import Queue
 
-import logger
+from . import logger
 log = logger.get()
 
 
@@ -65,7 +65,7 @@ class CommandDispatcher(object):
       pipe = None
     args = self.get_exec_command(args, stdout_file=stdout_file)
     env = self.get_env()
-    job = subprocess.Popen(args, stdout=pipe, stderr=pipe, env=env)
+    job = subprocess.Popen(args, shell=True, stdout=pipe, stderr=pipe, env=env)
     return job
 
 
